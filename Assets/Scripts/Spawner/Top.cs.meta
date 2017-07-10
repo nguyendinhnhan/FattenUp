@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e2110656cbb09da479c7ce7d7ae6a5c8
+timeCreated: 1498890424
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - banana: {fileID: 1828848855660012, guid: d10da2505ffdfb14eb0a33ec2462dd66, type: 2}
+  - bone: {fileID: 1603977039838398, guid: 9be8b6de7578370459fa1a97c03b7082, type: 2}
+  - sallad: {fileID: 1586023200388212, guid: 2ddda7a725b8fb341a496265ff7b9b19, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

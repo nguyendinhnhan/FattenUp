@@ -1,0 +1,20 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Controller\MainMenuController.cs">
+    <Files>
+      <File FileName="Assets\Scripts\Spawner\Top.cs" Line="27" Column="53" />
+      <File FileName="Assets\Scripts\Character\Animal.cs" Line="69" Column="20" />
+      <File FileName="Assets\Scripts\StorageManager\StorageManager.cs" Line="161" Column="57" />
+      <File FileName="Assets\Scripts\Controller\GameController.cs" Line="46" Column="101" />
+      <File FileName="Assets\Scripts\IFattenUpDefines.cs" Line="8" Column="25" />
+      <File FileName="Assets\Scripts\Controller\GameManager.cs" Line="91" Column="53" />
+      <File FileName="Assets\Scripts\Tutorial\Tutorial_Animal.cs" Line="67" Column="49" />
+      <File FileName="Assets\Scripts\Tutorial\Tutorial_Food.cs" Line="14" Column="22" />
+      <File FileName="Assets\Scripts\Controller\MainMenuController.cs" Line="56" Column="28" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4070ef44ff869ce4eba863b5ffe7fb65
+timeCreated: 1498890642
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - pig: {fileID: 21300000, guid: c3c5b9012ad3d9b48bc0394fc4ed2bf7, type: 3}
+  - dog: {fileID: 21300002, guid: c3c5b9012ad3d9b48bc0394fc4ed2bf7, type: 3}
+  - monkey: {fileID: 21300004, guid: c3c5b9012ad3d9b48bc0394fc4ed2bf7, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
