@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Facebook.Unity;
 
 public class GameController : MonoBehaviour {
 
@@ -105,6 +106,28 @@ public class GameController : MonoBehaviour {
 			MainMenuController.s_isMuteSound = true;
 			audioSource.mute = true;
 			gameObject.GetComponent<Text> ().text = "Sound: Off";
+		}
+	}
+
+	public void Share(){
+		FB.ShareLink(
+			new System.Uri("https://developers.facebook.com/"),
+			"This game is awesome!",
+			"A description of the game",
+			new System.Uri("http://neonindo.com/wp-content/themes/sauron/images/logo.png"),
+			callback: ShareCallback
+		);
+	}
+
+	private void ShareCallback (IShareResult result) {
+		if (result.Cancelled || !System.String.IsNullOrEmpty(result.Error)) {
+			Debug.Log("ShareLink Error: "+result.Error);
+		} else if (!System.String.IsNullOrEmpty(result.PostId)) {
+			// Print post identifier of the shared content
+			Debug.Log(result.PostId);
+		} else {
+			// Share succeeded without postID
+			Debug.Log("ShareLink success!");
 		}
 	}
 }

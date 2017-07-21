@@ -65,6 +65,7 @@ public class Tutorial_Animal : MonoBehaviour {
 		if (other.CompareTag ("banana") && m_spriteRenderer.sprite.Equals (monkey)) {
 			StorageManager.s_doneTutorial = 1;
 			StorageManager.instance.SaveTutorialData (1);
+			Debug.Log ("Error cause Storage Manager not exist!!!");
 			Tutorial.instance.destroyTutorial ();
 		}
 			
