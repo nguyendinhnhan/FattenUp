@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 37bb0e33941bfae47b9123c23650d52a
+timeCreated: 1501182515
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Polygon Party
+  fontNames:
+  - Polygon Party
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

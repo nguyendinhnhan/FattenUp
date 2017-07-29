@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 1f4ae63f98eb72d4da173aec72bdda48
+timeCreated: 1501183736
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Pipe Dream
+  fontNames:
+  - Pipe Dream
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
