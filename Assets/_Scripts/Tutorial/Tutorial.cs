@@ -30,11 +30,15 @@ public class Tutorial : MonoBehaviour {
 	}
 
 	void Start () {
-		if (StorageManager.s_doneTutorial == 0) {
-			ActiveFood (IFattenUpDefines.BONE);
-		} else if (StorageManager.s_doneTutorial == 1) {
+		#if DEBUG
 			destroyTutorial ();
-		}
+		#else
+			if (StorageManager.s_doneTutorial == 0) {
+				ActiveFood (IDefine.BONE);
+			} else if (StorageManager.s_doneTutorial == 1) {
+				destroyTutorial ();
+			}
+		#endif
 	}
 
 	public void destroyTutorial () {
@@ -71,19 +75,19 @@ public class Tutorial : MonoBehaviour {
 
 	public void ActiveFood(int indexFood) {
 		switch (indexFood) {
-		case IFattenUpDefines.BONE:
+		case IDefine.BONE:
 			Bone.GetComponent<Tutorial_Food> ().m_speed = 3;
 			isDog = true;
 			isPig = false;
 			isMonkey = false;
 			break;
-		case IFattenUpDefines.SALLAD:
+		case IDefine.SALLAD:
 			Sallad.GetComponent<Tutorial_Food> ().m_speed = 3;
 			isPig = true;
 			isDog = false;
 			isMonkey = false;
 			break;
-		case IFattenUpDefines.BANANA:
+		case IDefine.BANANA:
 			Banana.GetComponent<Tutorial_Food> ().m_speed = 3;
 			isMonkey = true;
 			isDog = false;

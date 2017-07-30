@@ -49,9 +49,9 @@ public class GameManager : MonoBehaviour {
 	void Start () {
 		s_countAds = 0;
 		s_isGameOver = false;
-		s_score = IFattenUpDefines.SCORE_START;			// 0
-		s_speed = IFattenUpDefines.SPEED_START;			// 3
-		s_numCols_Current = IFattenUpDefines.COL_START;	// 1
+		s_score = IDefine.SCORE_START;			// 0
+		s_speed = IDefine.SPEED_START;			// 3
+		s_numCols_Current = IDefine.COL_START;	// 1
 	}
 
 	// Update is called once per frame
@@ -64,20 +64,19 @@ public class GameManager : MonoBehaviour {
 		textScore.text = "Score: " + s_score;
 
 		// Update BG if true
-		if (s_score == IFattenUpDefines.SCORE_TO_BG2COL && s_numCols_Current == 1) {
-			s_numCols_Current = 2;
-			setPosAnimal_2COL ();
-		} else if(s_score == IFattenUpDefines.SCORE_TO_BG3COL && s_numCols_Current == 2) {
-			s_numCols_Current = 3;
-			setPosAnimal_3COL ();
+		if (s_score == IDefine.SCORE_TO_BG2COL && s_numCols_Current == 1) {
+			Debug.Log ("Change_2COLS 2");
+			Change_2COLS ();
+		} else if(s_score == IDefine.SCORE_TO_BG3COL && s_numCols_Current == 2) {
+			Debug.Log ("Change_3COLS 3");
+			Change_3COLS ();
 		}
 
 		// Raise speed Random
-		if (s_score % 4 == 0) {
-			int rand = Random.Range (0, 2);
-			if (rand > 0) {
-				s_speed++;
-			}
+		if ((s_numCols_Current == 1 && s_score % 6 == 0)
+			|| (s_numCols_Current == 2 && s_score % 6 == 0)
+			|| (s_numCols_Current == 3 && s_score % 12 == 0)) {
+			s_speed++;
 		}
 	}
 
@@ -85,22 +84,31 @@ public class GameManager : MonoBehaviour {
 		animal_1.SetActive (true);
 	}
 
-	public void setPosAnimal_2COL () {
+	public void Change_2COLS () {
+		
+		s_numCols_Current = 2;
+		BGScaler.instance.ChangeBG (2);
+
 		s_speed--;
 		Vector3 posAnimal_1 = animal_1.transform.position;
-		posAnimal_1.x = -IFattenUpDefines.POS_X_COL2;
+		posAnimal_1.x = -IDefine.POS_X_COL2;
 		animal_1.transform.position = posAnimal_1;
 
 		animal_2.SetActive (true);
 		Vector3 posAnimal_2 = animal_2.transform.position;
-		posAnimal_2.x = IFattenUpDefines.POS_X_COL2;
+		posAnimal_2.x = IDefine.POS_X_COL2;
 		animal_2.transform.position = posAnimal_2;
 	}
 
-	public void setPosAnimal_3COL () {
+	public void Change_3COLS () {
+		
+		s_numCols_Current = 3;
+		//Food.instance.Destroy_Food ();
+		BGScaler.instance.ChangeBG (3);
+
 		s_speed--;
 		Vector3 posAnimal_1 = animal_1.transform.position;
-		posAnimal_1.x = -IFattenUpDefines.POS_X_COL3;
+		posAnimal_1.x = -IDefine.POS_X_COL3;
 		animal_1.transform.position = posAnimal_1;
 
 		Vector3 posAnimal_2 = animal_2.transform.position;
@@ -109,28 +117,35 @@ public class GameManager : MonoBehaviour {
 
 		animal_3.SetActive (true);
 		Vector3 posAnimal_3 = animal_3.transform.position;
-		posAnimal_3.x = IFattenUpDefines.POS_X_COL3;
+		posAnimal_3.x = IDefine.POS_X_COL3;
 		animal_3.transform.position = posAnimal_3;
 	}
 
 	public void GameOver () {
-		s_isGameOver = true;
-		if (s_countAds < 1) {
-			s_countAds++;
-			GameController.instance.ShowAdsPanel (true);
-		} else {
-			ShowPlayAgain ();
+		if (!s_isGameOver) {
+			Debug.Log ("Game Over!!!!");
+			s_isGameOver = true;
+			if (s_countAds < 1) {
+				s_countAds++;
+				GameController.instance.ShowAdsPanel (true);
+			} else {
+				ShowPlayAgain ();
+			}
 		}
 	}
 
 	public void ShowPlayAgain () {
 		s_countAds = 0;
+	#if DEBUG
+		GameController.instance.GameOver ();
+	#else
 		int position = StorageManager.instance.checkScoreOnLeaderBoard (s_score);
 		if (position > -1) {
 			GameController.instance.InputName ();
 		} else {
 			GameController.instance.GameOver ();
 		}
+	#endif
 	}
 
 }

@@ -46,14 +46,15 @@ public class AdManager : MonoBehaviour
 
 		AudioListener.pause = false;
 
-
-
 		if (currentTimescale > 0f) {
 			Time.timeScale = currentTimescale;
 		}
 		else {			
 			Time.timeScale = 1f;
 		}
+
+		GameController.instance.ShowAdsPanel (false);
+		AutoDestroyAnim.instance.BeginAnimNumber ();
 
 		while(counter < target) { 
 			counter++; 
@@ -115,8 +116,6 @@ public class AdManager : MonoBehaviour
 		switch (showResult) {
 		case ShowResult.Finished:
 			Debug.Log ("Player finished watching the video ad and is being rewarded with extra fuel.");
-			GameController.instance.ShowAdsPanel (false);
-			AutoDestroyAnim.instance.BeginAnimNumber ();
 			break;
 
 		case ShowResult.Skipped:

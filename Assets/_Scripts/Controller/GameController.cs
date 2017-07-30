@@ -115,7 +115,7 @@ public class GameController : MonoBehaviour
 
 	public void InputNameButton ()
 	{
-		string name = (NamePlayerInputField.text != "") ? NamePlayerInputField.text : IFattenUpDefines.NAME_DEFAULT;
+		string name = (NamePlayerInputField.text != "") ? NamePlayerInputField.text : IDefine.NAME_DEFAULT;
 		StorageManager.instance.addPlayerIntoLeaderBoard (name, GameManager.s_score);
 		RestartButton ();
 	}

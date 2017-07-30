@@ -26,21 +26,21 @@ public class Tutorial_Animal : MonoBehaviour {
 				m_spriteRenderer.sprite = dog;
 				if (Tutorial.instance.isDog) {
 					Tutorial.s_allowClickAnimal = false;
-					Tutorial.instance.ActiveFood(IFattenUpDefines.BONE);
+					Tutorial.instance.ActiveFood(IDefine.BONE);
 					Tutorial.instance.ActiveAnimPoint (false);
 				}
 			} else if (m_spriteRenderer.sprite.Equals (dog)) {
 				m_spriteRenderer.sprite = monkey;
 				if (Tutorial.instance.isMonkey) {
 					Tutorial.s_allowClickAnimal = false;
-					Tutorial.instance.ActiveFood(IFattenUpDefines.BANANA);
+					Tutorial.instance.ActiveFood(IDefine.BANANA);
 					Tutorial.instance.ActiveAnimPoint (false);
 				}
 			} else {
 				m_spriteRenderer.sprite = pig;
 				if (Tutorial.instance.isPig) {
 					Tutorial.s_allowClickAnimal = false;
-					Tutorial.instance.ActiveFood(IFattenUpDefines.SALLAD);
+					Tutorial.instance.ActiveFood(IDefine.SALLAD);
 					Tutorial.instance.ActiveAnimPoint (false);
 				}
 			}
@@ -55,11 +55,11 @@ public class Tutorial_Animal : MonoBehaviour {
 		// dog	->  pig		-> 	monkey
 		// bone	-> 	sallad	-> 	banana
 		if (other.CompareTag ("bone") && m_spriteRenderer.sprite.Equals (dog)) {
-			Tutorial.instance.ActiveFood(IFattenUpDefines.SALLAD);
+			Tutorial.instance.ActiveFood(IDefine.SALLAD);
 		}
 
 		if (other.CompareTag ("sallad") && m_spriteRenderer.sprite.Equals (pig)) {
-			Tutorial.instance.ActiveFood(IFattenUpDefines.BANANA);
+			Tutorial.instance.ActiveFood(IDefine.BANANA);
 		}
 
 		if (other.CompareTag ("banana") && m_spriteRenderer.sprite.Equals (monkey)) {

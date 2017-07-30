@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IFattenUpDefines : MonoBehaviour {
+public class IDefine : MonoBehaviour {
+	//public const bool DEBUG_MODE = true;
 
 	//List Foods
 	public const int BANANA 	= 0;
@@ -44,8 +45,8 @@ public class IFattenUpDefines : MonoBehaviour {
 	public const int LEVEL_MAX_SCORE = 0;
 	public const int LEVEL_SPEED = 1;
 	public const int LEVEL_COLUMN = 2;
-	public const int SCORE_TO_BG2COL = 8;
-	public const int SCORE_TO_BG3COL = 28;
+	public const int SCORE_TO_BG2COL = 6;
+	public const int SCORE_TO_BG3COL = 16;
 	public const float POS_X_COL2 = 1.3f;
 	public const float POS_X_COL3 = 2f;
 

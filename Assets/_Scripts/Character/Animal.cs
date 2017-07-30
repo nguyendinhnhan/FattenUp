@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Animal : MonoBehaviour {
 
@@ -9,44 +11,27 @@ public class Animal : MonoBehaviour {
 	public Sprite dog;
 	public Sprite monkey;
 
-	private SpriteRenderer m_spriteRenderer;
-//	private Rigidbody2D m_rigidbody2D;
+	private Image m_image;
 
 	// Use when get a component object physic
 	void Awake() {
-		m_spriteRenderer = GetComponent<SpriteRenderer>();
-//		m_rigidbody2D = GetComponent<Rigidbody2D>();
+		m_image = GetComponent<Image> ();
 	}
 
-	// Update is called once per frame
-	void Update () {
-//		if(Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0) ) {
-//			if (m_spriteRenderer.sprite.Equals (pig))
-//				m_spriteRenderer.sprite = dog;
-//			else if (m_spriteRenderer.sprite.Equals (dog))
-//				m_spriteRenderer.sprite = monkey;
-//			else
-//				m_spriteRenderer.sprite = pig;
-//		}
-	}
-		
-	// Use when update one component object physic
-	void FixedUpdate(){
-	}
-
-	void OnMouseDown() {
-		if (m_spriteRenderer.sprite.Equals (pig))
-			m_spriteRenderer.sprite = dog;
-		else if (m_spriteRenderer.sprite.Equals (dog))
-			m_spriteRenderer.sprite = monkey;
-		else
-			m_spriteRenderer.sprite = pig;
+	public void ChangeSprite () {
+		if (m_image.sprite.Equals (pig)) {
+			m_image.sprite = dog;
+		} else if (m_image.sprite.Equals (dog)) {
+			m_image.sprite = monkey;
+		} else {
+			m_image.sprite = pig;
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
-		if ((other.CompareTag ("sallad") && m_spriteRenderer.sprite.Equals (pig))
-		    || (other.CompareTag ("bone") && m_spriteRenderer.sprite.Equals (dog))
-		    || (other.CompareTag ("banana") && m_spriteRenderer.sprite.Equals (monkey))) {
+		if ((other.CompareTag ("sallad") && m_image.sprite.Equals (pig))
+			|| (other.CompareTag ("bone") && m_image.sprite.Equals (dog))
+			|| (other.CompareTag ("banana") && m_image.sprite.Equals (monkey))) {
 			if (!MainMenuController.s_isMuteSound) {
 				GetComponent<AudioSource> ().PlayOneShot (Sound);
 			}
