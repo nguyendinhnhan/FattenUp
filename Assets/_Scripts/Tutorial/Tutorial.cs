@@ -6,16 +6,19 @@ using UnityEngine.UI;
 public class Tutorial : MonoBehaviour {
 
 	public GameObject AnimPoint;
+	public GameObject AnimSwipe;
 	public GameObject AnimDialog;
 	public GameObject Bone;
 	public GameObject Sallad;
 	public GameObject Banana;
+	public GameObject SwipeTouch;
 
 	public bool isDog = false;
 	public bool isPig = false;
 	public bool isMonkey = false;
 
 	public static bool s_allowClickAnimal = false;
+	public static bool s_allowSwipeAnimal = false;
 	public static bool s_isFoodForPet = false;
 	public static Tutorial instance;
 
@@ -30,22 +33,21 @@ public class Tutorial : MonoBehaviour {
 	}
 
 	void Start () {
-		#if DEBUG
+		Debug.Log ("Tutorial!!!!" + StorageManager.s_doneTutorial);
+		if (StorageManager.s_doneTutorial == 0) {
+			ActiveFood (IDefine.BONE);
+		} else if (StorageManager.s_doneTutorial == 1) {
 			destroyTutorial ();
-		#else
-			if (StorageManager.s_doneTutorial == 0) {
-				ActiveFood (IDefine.BONE);
-			} else if (StorageManager.s_doneTutorial == 1) {
-				destroyTutorial ();
-			}
-		#endif
+		}
 	}
 
 	public void destroyTutorial () {
+		Debug.Log ("=====nhan=======destroy tur==========");
+		Destroy (SwipeTouch);
 		Destroy (gameObject);
 		Destroy (AnimDialog);
 		AutoDestroyAnim.instance.BeginAnimNumber ();
-		GameManager.instance.ActiveAnimal1 ();
+		GameManager.instance.ActiveCharacter1 ();
 	}
 
 	public void ActiveAnimPoint(bool isPlay){
@@ -54,23 +56,41 @@ public class Tutorial : MonoBehaviour {
 
 		string txt = "";
 		if (isDog) {
-			txt = "Tap to choose Pet \n Dog eat Bone!!!";
+			txt = "Tap to choose Pet \nDog eat Bone !";
 		} else if (isPig) {
-			txt = "Tap to choose Pet \n Pig eat Sallad!!!";
+			txt = "Tap to choose Pet \nPig eat Salad !";
 		} else if (isMonkey) {
-			txt = "Tap to choose Pet \n Monkey eat Banana!!!";
+			txt = "Tap to choose Pet \nMonkey eat Banana !";
 		}
 
 		GameObject txtDialog = AnimDialog.transform.GetChild (1).gameObject;
 		txtDialog.GetComponent<Text> ().text = txt;
 
-		Vector2 pos = AnimPoint.transform.position;
-		pos.y = -5.5f;
-		AnimPoint.transform.position = pos;
+		if (!isPlay) {
+			Vector2 pos = AnimPoint.transform.position;
+			pos.y = -5.5f;
+			AnimPoint.transform.position = pos;
 
-		Vector2 posDialog = AnimDialog.transform.position;
-		posDialog.y = -455f;
-		AnimDialog.transform.position = posDialog;
+			Vector2 posDialog = AnimDialog.transform.position;
+			posDialog.y = -6f;
+			AnimDialog.transform.position = posDialog;
+		}
+	}
+
+	public void ActiveAnimSwipe(bool isPlay) {
+		AnimSwipe.GetComponent<Animator> ().enabled = isPlay;
+		AnimDialog.GetComponent<Animator> ().enabled = isPlay;
+
+		string txt = "Swipe your Pet \nto eat food faster !";
+		GameObject txtDialog = AnimDialog.transform.GetChild (1).gameObject;
+		txtDialog.GetComponent<Text> ().text = txt;
+
+		if (!isPlay) {
+			Vector2 pos = AnimSwipe.transform.position;
+			pos.x = 2f;
+			pos.y = -5.5f;
+			AnimSwipe.transform.position = pos;
+		}
 	}
 
 	public void ActiveFood(int indexFood) {

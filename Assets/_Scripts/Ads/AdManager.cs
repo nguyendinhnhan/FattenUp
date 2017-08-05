@@ -8,8 +8,8 @@ using UnityEngine.UI;
 public class AdManager : MonoBehaviour
 {
 	public static AdManager instance;
-	float counter = 0f; 
-	float target = 200f;
+//	float counter = 0f;
+//	float target = 200f;
 
 	void Awake()
 	{
@@ -50,18 +50,14 @@ public class AdManager : MonoBehaviour
 			Time.timeScale = currentTimescale;
 		}
 		else {			
-			Time.timeScale = 1f;
+			//Time.timeScale = 1f;
 		}
 
-		GameController.instance.ShowAdsPanel (false);
-		AutoDestroyAnim.instance.BeginAnimNumber ();
-
-		while(counter < target) { 
-			counter++; 
-			yield return null;
-		}
-
-		GameManager.s_isGameOver = false;
+//		while(counter < target) { 
+//			counter++; 
+//			yield return null;
+//		}
+//		GameManager.s_isGameOver = false;
 	}
 
 //	public void ShowStandardVideoAd() {
@@ -69,7 +65,7 @@ public class AdManager : MonoBehaviour
 //	}
 
 	public void ShowVideoAd(Action<ShowResult> adCallBackAction = null, string zone = "") {
-		counter = 0f;
+		//counter = 0f;
 		StartCoroutine (WaitForAdEditor ());
 
 		if (string.IsNullOrEmpty (zone)) {
@@ -89,6 +85,7 @@ public class AdManager : MonoBehaviour
 			Advertisement.Show (zone, options);
 		} else {
 			Debug.LogWarning ("Ad was not ready. Zone: " + zone);
+			GameController.instance.ShowErrorPanel (true);
 		}
 	}
 
@@ -116,6 +113,8 @@ public class AdManager : MonoBehaviour
 		switch (showResult) {
 		case ShowResult.Finished:
 			Debug.Log ("Player finished watching the video ad and is being rewarded with extra fuel.");
+			GameController.instance.ShowAdsPanel (false);
+			AutoDestroyAnim.instance.BeginAnimNumber ();
 			break;
 
 		case ShowResult.Skipped:
@@ -123,7 +122,8 @@ public class AdManager : MonoBehaviour
 			break;
 
 		case ShowResult.Failed:
-			Debug.Log("video ad failed, no reward.");
+			Debug.Log ("video ad failed, no reward.");
+			GameController.instance.ShowErrorPanel (true);
 			break;
 		}
 	}

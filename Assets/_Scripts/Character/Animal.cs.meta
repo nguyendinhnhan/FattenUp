@@ -1,13 +1,14 @@
 fileFormatVersion: 2
 guid: de7302f1e7bdf3a4e9eed022f95d4aa5
-timeCreated: 1498890642
+timeCreated: 1501931671
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
-  - pig: {fileID: 21300000, guid: c3c5b9012ad3d9b48bc0394fc4ed2bf7, type: 3}
-  - dog: {fileID: 21300002, guid: c3c5b9012ad3d9b48bc0394fc4ed2bf7, type: 3}
-  - monkey: {fileID: 21300004, guid: c3c5b9012ad3d9b48bc0394fc4ed2bf7, type: 3}
+  - Sound: {fileID: 8300000, guid: 2947e3129ec61854bb2184dd1ae7fcca, type: 3}
+  - pig: {instanceID: 0}
+  - dog: {instanceID: 0}
+  - monkey: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

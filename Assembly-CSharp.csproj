@@ -46,36 +46,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\FacebookSDK\Examples\Scripts\ConsoleBase.cs" />
-     <Compile Include="Assets\FacebookSDK\Examples\Scripts\LogView.cs" />
-     <Compile Include="Assets\FacebookSDK\Examples\Scripts\MenuBase.cs" />
-     <Compile Include="Assets\FacebookSDK\Examples\Scripts\SubMenus\AccessTokenMenu.cs" />
-     <Compile Include="Assets\FacebookSDK\Examples\Scripts\SubMenus\AppEvents.cs" />
-     <Compile Include="Assets\FacebookSDK\Examples\Scripts\SubMenus\AppInvites.cs" />
-     <Compile Include="Assets\FacebookSDK\Examples\Scripts\SubMenus\AppLinks.cs" />
-     <Compile Include="Assets\FacebookSDK\Examples\Scripts\SubMenus\AppRequests.cs" />
-     <Compile Include="Assets\FacebookSDK\Examples\Scripts\SubMenus\DialogShare.cs" />
-     <Compile Include="Assets\FacebookSDK\Examples\Scripts\SubMenus\GraphRequest.cs" />
-     <Compile Include="Assets\FacebookSDK\Examples\Scripts\SubMenus\MainMenu.cs" />
-     <Compile Include="Assets\FacebookSDK\Examples\Scripts\SubMenus\Pay.cs" />
      <Compile Include="Assets\_Scripts\Ads\AdManager.cs" />
      <Compile Include="Assets\_Scripts\Animation\AutoDestroyAnim.cs" />
      <Compile Include="Assets\_Scripts\Background\BGScaler.cs" />
      <Compile Include="Assets\_Scripts\Character\Animal.cs" />
      <Compile Include="Assets\_Scripts\Character\Food.cs" />
+     <Compile Include="Assets\_Scripts\Character\SwipeTouchNew.cs" />
      <Compile Include="Assets\_Scripts\Controller\GameController.cs" />
      <Compile Include="Assets\_Scripts\Controller\GameManager.cs" />
      <Compile Include="Assets\_Scripts\Controller\MainMenuController.cs" />
      <Compile Include="Assets\_Scripts\Facebook\FBScript.cs" />
-     <Compile Include="Assets\_Scripts\IFattenUpDefines.cs" />
+     <Compile Include="Assets\_Scripts\IDefine.cs" />
      <Compile Include="Assets\_Scripts\Spawner\Bottom.cs" />
      <Compile Include="Assets\_Scripts\Spawner\Top.cs" />
      <Compile Include="Assets\_Scripts\StorageManager\ListPlayer.cs" />
      <Compile Include="Assets\_Scripts\StorageManager\Player.cs" />
      <Compile Include="Assets\_Scripts\StorageManager\StorageManager.cs" />
      <Compile Include="Assets\_Scripts\Tutorial\Tutorial.cs" />
-     <Compile Include="Assets\_Scripts\Tutorial\Tutorial_Animal.cs" />
      <Compile Include="Assets\_Scripts\Tutorial\Tutorial_Food.cs" />
+     <Compile Include="Assets\_Scripts\Tutorial\Tutorial_SwipeTouch.cs" />
      <None Include="Assets\PlayServicesResolver\Editor\play-services-resolver.txt" />
      <None Include="Assets\FacebookSDK\link.xml" />
      <None Include="Assets\Plugins\Android\AndroidManifest.xml" />

@@ -3,57 +3,68 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StorageManager : MonoBehaviour {
+public class StorageManager : MonoBehaviour
+{
 
 	public GameObject playerPanel;
-	[SerializeField]
-	private GameObject popUpPanel;
+	public GameObject popUpPanel;
 
 	// Class Varibles
 	public static ListPlayer s_listPlayer;
 	public static int s_doneTutorial;
+	public static int s_isSound;
 
 	public const string PlayerPreferencesKey = "player";
 	public const string TutorialPreferencesKey = "tutorial";
+	public const string SoundPreferencesKey = "sound";
 
 	public const int numPlayer = 5;
 	public int StorageManagerInited;
 
 	public static StorageManager instance;
 
-	void Awake () {
+	void Awake ()
+	{
 		getInstance ();
 	}
 
-	void getInstance () {
+	void getInstance ()
+	{
 		if (instance == null) {
 			instance = this;
 		}
 	}
 
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+	{
+		InitPlayer ();
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		if (StorageManagerInited < 1) {
-			StorageManagerInited++;
-			InitPlayer ();
-		}
+	void Update ()
+	{
+//		if (StorageManagerInited < 1) {
+//			StorageManagerInited++;
+//			InitPlayer ();
+//		}
 	}
 
-	public void InitPlayer () {
-		s_doneTutorial = ReadTutorialData();
+	public void InitPlayer ()
+	{
+		s_doneTutorial = ReadTutorialData ();
+		s_isSound = ReadSoundData ();
+		Debug.Log ("====test=====s_doneTutorial=======" + s_doneTutorial);
 		ApplyDataToGame ();
+		MainMenuController.instance.InitSound ();
 	}
 
-/// <summary>
-/// Reads the tutorial data.
-/// Save the tutorial data.
-/// </summary>
-	public int ReadTutorialData () {
+	/// <summary>
+	/// Reads the tutorial data.
+	/// Save the tutorial data.
+	/// </summary>
+	public int ReadTutorialData ()
+	{
 		int doneTut = 0;
 		if (PlayerPrefs.HasKey (TutorialPreferencesKey)) {
 			doneTut = PlayerPrefs.GetInt (TutorialPreferencesKey);
@@ -62,17 +73,39 @@ public class StorageManager : MonoBehaviour {
 		}
 		return doneTut;
 	}
-		
-	public void SaveTutorialData(int doneTut){
+
+	public void SaveTutorialData (int doneTut)
+	{
 		PlayerPrefs.SetInt (TutorialPreferencesKey, doneTut);
 	}
 
-/// <summary>
-/// Reads the player data.
-/// Get default the player data.
-/// Save the player data.
-/// </summary>
-	public ListPlayer ReadPlayerData () {
+	/// <summary>
+	/// Reads the tutorial data.
+	/// Save the tutorial data.
+	/// </summary>
+	public int ReadSoundData ()
+	{
+		int isSound = 1;
+		if (PlayerPrefs.HasKey (SoundPreferencesKey)) {
+			isSound = PlayerPrefs.GetInt (SoundPreferencesKey);
+		} else {
+			SaveTutorialData (isSound);
+		}
+		return isSound;
+	}
+
+	public void SaveSoundData (int isSound)
+	{
+		PlayerPrefs.SetInt (SoundPreferencesKey, isSound);
+	}
+
+	/// <summary>
+	/// Reads the player data.
+	/// Get default the player data.
+	/// Save the player data.
+	/// </summary>
+	public ListPlayer ReadPlayerData ()
+	{
 		ListPlayer listPlayer = null;
 		if (PlayerPrefs.HasKey (PlayerPreferencesKey)) {
 			string json = PlayerPrefs.GetString (PlayerPreferencesKey);
@@ -86,11 +119,12 @@ public class StorageManager : MonoBehaviour {
 		return listPlayer;
 	}
 
-	public List<Player> GetDefaultDataForPlayers() {
+	public List<Player> GetDefaultDataForPlayers ()
+	{
 		List<Player> listPlayer = new List<Player> ();
 		Player player;
 		for (int i = 0; i < numPlayer; i++) {
-			player = new Player();
+			player = new Player ();
 			player.id = i + 1;
 			player.name = "Fatten Up";
 			player.score = 0;
@@ -100,12 +134,14 @@ public class StorageManager : MonoBehaviour {
 		return listPlayer;
 	}
 
-	public static void SavePlayerData(ListPlayer listPlayer){
+	public static void SavePlayerData (ListPlayer listPlayer)
+	{
 		string json = JsonUtility.ToJson (listPlayer);
 		PlayerPrefs.SetString (PlayerPreferencesKey, json);
 	}
 
-	public int checkScoreOnLeaderBoard(int score) {
+	public int checkScoreOnLeaderBoard (int score)
+	{
 		for (int i = 0; i < s_listPlayer.players.Count; i++) {
 			if (score > s_listPlayer.players [i].score) {
 				return (i + 1);
@@ -114,11 +150,12 @@ public class StorageManager : MonoBehaviour {
 		return -1;
 	}
 
-	public void addPlayerIntoLeaderBoard(string name, int score) {
+	public void addPlayerIntoLeaderBoard (string name, int score)
+	{
 		ListPlayer listPlayer = StorageManager.s_listPlayer;
 		int position = checkScoreOnLeaderBoard (GameManager.s_score);
 
-		for (int i = numPlayer-1; i >= position; i--) {
+		for (int i = numPlayer - 1; i >= position; i--) {
 			listPlayer.players [i].name = listPlayer.players [i - 1].name;
 			listPlayer.players [i].score = listPlayer.players [i - 1].score;
 		}
@@ -129,7 +166,8 @@ public class StorageManager : MonoBehaviour {
 		SavePlayerData (listPlayer);
 	}
 
-	public void ApplyDataToGame(){
+	public void ApplyDataToGame ()
+	{
 		s_listPlayer = ReadPlayerData ();
 
 		float posY_Anchor = 0.75f;
@@ -167,9 +205,10 @@ public class StorageManager : MonoBehaviour {
 	// Initialize Levels
 	// ApplyDataSgle Level
 
-	public void debugListPlayer(){
+	public void debugListPlayer ()
+	{
 		for (int i = 0; i < s_listPlayer.players.Count; i++) {
-			Debug.Log ("i: " + s_listPlayer.players[i].score);
+			Debug.Log ("i: " + s_listPlayer.players [i].score);
 		}
 	}
 

@@ -20,6 +20,15 @@ public class Tutorial_Food : MonoBehaviour {
 			m_speed = 0;
 			Tutorial.instance.ActiveAnimPoint (true);
 			Tutorial.s_allowClickAnimal = true;
+		} else if (other.CompareTag ("animMonkeyTutorial")) {
+
+			Debug.Log ("===========Destroy=====animMonkeyTutorial======");
+			Destroy (other.gameObject);
+			Destroy (gameObject);
+
+			StorageManager.s_doneTutorial = 1;
+			StorageManager.instance.SaveTutorialData (1); // 1 : done tutorial
+			Tutorial.instance.destroyTutorial ();
 		}
 	}
 

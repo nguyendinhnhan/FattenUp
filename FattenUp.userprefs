@@ -1,14 +1,18 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\_Scripts\Controller\GameManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\_Scripts\Character\Animal.cs">
     <Files>
-      <File FileName="Assets\_Scripts\Controller\GameManager.cs" Line="139" Column="18" />
-      <File FileName="Assets\_Scripts\IFattenUpDefines.cs" Line="6" Column="30" />
-      <File FileName="Assets\_Scripts\Spawner\Top.cs" Line="16" Column="8" />
-      <File FileName="Assets\_Scripts\Character\Food.cs" Line="1" Column="1" />
+      <File FileName="Assets\_Scripts\Character\Animal.cs" Line="23" Column="68" />
+      <File FileName="Assets\_Scripts\Controller\GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\_Scripts\Animation\AutoDestroyAnim.cs" Line="1" Column="1" />
+      <File FileName="Assets\_Scripts\Spawner\Top.cs" Line="1" Column="1" />
+      <File FileName="Assets\_Scripts\IDefine.cs" Line="1" Column="1" />
+      <File FileName="Assets\_Scripts\Tutorial\Tutorial_SwipeTouch.cs" Line="1" Column="1" />
+      <File FileName="Assets\_Scripts\Tutorial\Tutorial_Food.cs" Line="1" Column="1" />
+      <File FileName="Assets\_Scripts\StorageManager\StorageManager.cs" Line="1" Column="1" />
       <File FileName="Assets\_Scripts\Ads\AdManager.cs" Line="1" Column="1" />
       <File FileName="Assets\_Scripts\Controller\GameController.cs" Line="1" Column="1" />
-      <File FileName="Assets\_Scripts\Tutorial\Tutorial.cs" Line="33" Column="3" />
+      <File FileName="Assets\_Scripts\Character\SwipeTouch.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Food : MonoBehaviour {
 
-	private int m_speed;
+	public int m_speed;
 	private Rigidbody2D m_rigidbody2D;
 	public static Food instance;
 
@@ -23,18 +23,9 @@ public class Food : MonoBehaviour {
 	void Start () {
 		m_speed = GameManager.s_speed;	
 	}
-		
-	void FixedUpdate() {
-		if (GameManager.s_isGameOver) {
-			Debug.Log ("Destroy Food!!!");
-			Destroy (gameObject);
-		}
-		
-		m_rigidbody2D.velocity = new Vector2(0, -m_speed);
-	}
 
-	public void Destroy_Food () {
-		Debug.Log ("Destroy Food 111111 !!!");
-		Destroy (gameObject);
+	void FixedUpdate() {
+		m_rigidbody2D.velocity = new Vector2(0, -m_speed * Time.deltaTime * 10);
+//		m_rigidbody2D.velocity = new Vector2(0, -m_speed);
 	}
 }

@@ -16,6 +16,7 @@ public class GameController : MonoBehaviour
 	public GameObject buttonResume;
 	public GameObject buttonSound;
 	public Button videoButton;
+	public GameObject ErrorPanel;
 
 	AudioSource audioSource;
 	public static GameController instance;
@@ -61,25 +62,23 @@ public class GameController : MonoBehaviour
  * Button in Game Play
  *
  **/
-	public void PauseButton ()
-	{
-		pausePanel.SetActive (true);
-		buttonResume.SetActive (true);
-		buttonPause.SetActive (false);
-		Time.timeScale = 0f;
-	}
-/*****End Button in Game Play****/
+	public void PauseButton () {
+		bool isPause = false;
+		if (Time.timeScale == 0) {
+			Time.timeScale = 1f;
+		} else {
+			Time.timeScale = 0f;
+			isPause = true;
+		}
 
-/**
- * Button in Game Pause
- *
- **/
-	public void ResumeButton ()
+		ShowPausePanel (isPause);
+	}
+
+	public void ShowPausePanel (bool isPause)
 	{
-		pausePanel.SetActive (false);
-		buttonResume.SetActive (false);
-		buttonPause.SetActive (true);
-		Time.timeScale = 1f;
+		pausePanel.SetActive (isPause);
+		buttonPause.transform.GetChild (0).gameObject.SetActive(!isPause);
+		buttonPause.transform.GetChild (1).gameObject.SetActive(isPause);
 	}
 
 	public void ButtonSound ()
@@ -89,10 +88,12 @@ public class GameController : MonoBehaviour
 			MainMenuController.s_isMuteSound = false;
 			audioSource.mute = false;
 			gameObject.GetComponent<Text> ().text = "Sound: On";
+			StorageManager.instance.SaveSoundData (1);
 		} else {
 			MainMenuController.s_isMuteSound = true;
 			audioSource.mute = true;
 			gameObject.GetComponent<Text> ().text = "Sound: Off";
+			StorageManager.instance.SaveSoundData (0);
 		}
 	}
 
@@ -160,8 +161,13 @@ public class GameController : MonoBehaviour
 		if (show) {
 			Time.timeScale = 0f;
 		} else {
-			//Time.timeScale = 1f;
+			Time.timeScale = 1f;
 		}
+		ShowErrorPanel (false);
+	}
+
+	public void ShowErrorPanel (bool show) {
+		ErrorPanel.SetActive (show);
 	}
 
 	public void ButtonCloseAds () {

@@ -16,12 +16,23 @@ public class MainMenuController : MonoBehaviour {
 	AudioSource audioSource;
 	public static bool s_isMuteSound = false;
 
-	void Awake () {
+	public static MainMenuController instance;
+
+	void Awake ()
+	{
+		getInstance ();
 		audioSource = GetComponent<AudioSource> ();
 	}
 
-	void Start(){
-		InitSound ();
+	void getInstance ()
+	{
+		if (instance == null) {
+			instance = this;
+		}
+	}
+
+	void Start() {
+//		InitSound ();
 	}
 
 	public void PlayGameButton () {
@@ -60,10 +71,12 @@ public class MainMenuController : MonoBehaviour {
 			s_isMuteSound = false;
 			audioSource.mute = false;
 			ChangeSoundImage (false);
+			StorageManager.instance.SaveSoundData (1);
 		} else {
 			s_isMuteSound = true;
 			audioSource.mute = true;
 			ChangeSoundImage (true);
+			StorageManager.instance.SaveSoundData (0);
 		}
 	}
 
@@ -73,6 +86,11 @@ public class MainMenuController : MonoBehaviour {
 	}
 
 	public void InitSound() {
+		if (StorageManager.s_isSound == 1) {
+			s_isMuteSound = false;
+		} else if (StorageManager.s_isSound == 0){
+			s_isMuteSound = true;
+		}
 		if (s_isMuteSound) {
 			audioSource.mute = true;
 			ChangeSoundImage (true);

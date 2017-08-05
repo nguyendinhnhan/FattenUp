@@ -78,7 +78,7 @@ public class FBScript : MonoBehaviour
 	}
 
 	void ChangText (string txt) {
-		ButtonFB.transform.GetChild (1).GetComponent<Text>().text = txt;
+		ButtonFB.transform.GetChild (0).GetComponent<Text>().text = txt;
 	}
 
 	void ShowUI ()
